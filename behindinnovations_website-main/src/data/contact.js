@@ -5,5 +5,5 @@ export const CONTACT = {
   general: null,
   partnerships: null,
   investors: null,
-  website: 'behind-innovations.tiwbusreg.chatgpt.site',
+  website: 'www.behindinnovations.com',
 }

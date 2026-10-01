@@ -18,7 +18,7 @@ export default function Home({ onOpenModal }) {
               </h1>
 
               <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
-                An EV-focused ride app is our first step. Our wider vision connects transport, tourism and logistics
+                A ride app is our first step. Our wider vision connects transport, tourism and logistics
                 across road, air, water and space.
               </p>
 
@@ -32,7 +32,7 @@ export default function Home({ onOpenModal }) {
                   to="/road"
                   className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 text-white font-extrabold text-xs uppercase shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-2"
                 >
-                  EV Ride App
+                  Ride App
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>

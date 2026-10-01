@@ -10,7 +10,7 @@ glass cards, Space Grotesk + Plus Jakarta Sans, orbit hero).
 |---------------|-------------------|
 | `/`           | 01 Home           |
 | `/about`      | 02 About BI       |
-| `/road`       | 03 Road — EV ride app (interactive ride-mode simulator) |
+| `/road`       | 03 Road — Ride app (interactive ride-mode simulator) |
 | `/sea`        | 04 Sea            |
 | `/air`        | 05 Air            |
 | `/space`      | 06 Space          |
@@ -79,7 +79,7 @@ src/
 
 ## Notes carried over from the content draft
 
-- Road leads with our **EV ride-hailing app**, the first real product (carpooling,
+- Road leads with our **ride-hailing app**, the first real product (carpooling,
   Women Safety Rides). Everything is labelled "planned" — no launch date is given.
 - Sea, Air and Space intentionally keep **"future direction / no services operating yet"**
   language (regulatory caution from the Master Plan, sections 9, 10, 18). Keep this even
@@ -97,9 +97,9 @@ official site address is pulled from `src/data/contact.js`.
 ## "Behind Trip" naming removed
 
 The product is no longer named "Behind Trip" anywhere in the app (nav, Home, Road, About, the
-partner modal, or the inquiry topic list) — it's now referred to generically as the "EV Ride App"
+partner modal, or the inquiry topic list) — it's now referred to generically as the "Ride App"
 / "our ride app", per request. If you later want a real product name, search the repo for
-"EV Ride App" / "our ride app" and swap it in.
+"Ride App" / "our ride app" and swap it in.
 
 ## Softer regulatory language
 

@@ -1,7 +1,7 @@
 // Leave unspecified email addresses null; the Contact page renders a placeholder.
 export const CONTACT = {
-  general: 'Behindinnovations@gmail.com',
-  partnerships: null,
-  investors: null,
+  general: 'contact@behindinnovations.com',
+  partnerships: 'Partners@behindinnovations.com',
+  investors: 'Investors@behindinnovations.com',
   website: 'www.behindinnovations.com',
 }

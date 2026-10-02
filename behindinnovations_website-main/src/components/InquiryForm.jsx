@@ -4,16 +4,33 @@ import { TOPIC_LIST, TOPICS } from '../data/topics.js'
 const FIELD =
   'w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm'
 
-// Shared by PartnerModal and the Contact page. There is no backend yet:
-// onSubmit is the hook to wire one up (receives { name, email, topic, message }).
+// Shared by PartnerModal and the Contact page. Posts to /api/contact,
+// which emails the inquiry to Behindinnovations@gmail.com.
 export default function InquiryForm({ defaultTopic = TOPICS.driver, onSubmit, onDone, doneLabel = 'Close' }) {
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.currentTarget))
-    onSubmit?.(data)
-    setSubmitted(true)
+    setSending(true)
+    setError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(json.error || 'Something went wrong. Please try again.')
+      onSubmit?.(data)
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setSending(false)
+    }
   }
 
   if (submitted) {
@@ -37,6 +54,8 @@ export default function InquiryForm({ defaultTopic = TOPICS.driver, onSubmit, on
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+      {/* Honeypot: hidden from people, filled by bots */}
+      <input type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
       <div>
         <label htmlFor="inq-name" className="block font-bold text-slate-700 mb-1">Full Name</label>
         <input id="inq-name" name="name" type="text" required placeholder="Your name" className={FIELD} />
@@ -57,11 +76,17 @@ export default function InquiryForm({ defaultTopic = TOPICS.driver, onSubmit, on
         <label htmlFor="inq-message" className="block font-bold text-slate-700 mb-1">Message</label>
         <textarea id="inq-message" name="message" rows="3" required placeholder="How can we help?" className={FIELD} />
       </div>
+      {error && (
+        <p role="alert" className="text-xs font-semibold text-rose-600 bg-rose-50 border border-rose-200 rounded-lg px-3 py-2">
+          {error}
+        </p>
+      )}
       <button
         type="submit"
-        className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold uppercase text-xs shadow-md"
+        disabled={sending}
+        className="w-full py-3.5 rounded-xl bg-gradient-to-r from-sky-600 to-blue-600 text-white font-bold uppercase text-xs shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Submit Inquiry
+        {sending ? 'Sending…' : 'Submit Inquiry'}
       </button>
     </form>
   )

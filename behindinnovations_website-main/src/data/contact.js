@@ -1,8 +1,6 @@
-// Contact details from the content draft (page 14). The draft has no real
-// emails yet — leave `null` until they are supplied; the Contact page renders
-// a visible "to be added" placeholder for any null value.
+// Leave unspecified email addresses null; the Contact page renders a placeholder.
 export const CONTACT = {
-  general: null,
+  general: 'Behindinnovations@gmail.com',
   partnerships: null,
   investors: null,
   website: 'www.behindinnovations.com',
